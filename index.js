@@ -48,7 +48,7 @@ async function getRow(id) {
         spreadsheetId: '16Icc4k8p8e5lqr53ImieUKNQjV4getadDRxhY9bZWyc',
         range: 'Points!A:D'
     });
-    console.log(response);
+    console.log(response.data.values);
 
     for (let row of response.data.values) {
         if (row[0] == id) {
