@@ -44,11 +44,11 @@ async function getRow(id) {
     });
 
     const api = google.sheets({ version: 'v4', auth });
-    console.log(api);
     const response = await api.spreadsheets.values.get({
         spreadsheetId: '16Icc4k8p8e5lqr53ImieUKNQjV4getadDRxhY9bZWyc',
         range: 'Points!A:D'
     });
+    console.log(response);
 
     for (let row of response.data.values) {
         if (row[0] == id) {
