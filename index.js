@@ -26,6 +26,11 @@ app.get('/s/:rid', async (req, res) => {
             status: 'success',
             data: { row: row }
         }
+    } else {
+        retval = {
+            status: 'error',
+            data: { row: 'nothing' }
+        }
     }
     res.setHeader('content-type', 'application/json');
     res.send(JSON.stringify(retval));
