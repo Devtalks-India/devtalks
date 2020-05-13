@@ -44,7 +44,7 @@ async function getRow(id) {
     const api = google.sheets({ version: 'v4', auth });
     const response = await api.spreadsheets.values.get({
         spreadsheetId: '16Icc4k8p8e5lqr53ImieUKNQjV4getadDRxhY9bZWyc',
-        range: 'Points!A:D'
+        range: 'Points!A:E'
     });
 
     for (let row of response.data.values) {
