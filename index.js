@@ -19,7 +19,6 @@ app.get('/hello', async (req, res) => {
 
 app.get('/s/:rid', async (req, res) => {
     const rowid = req.params.rid;
-    console.log(rowid);
     const row = await getRow(rowid);
     let retval;
     if (row) {
@@ -38,7 +37,6 @@ app.get('/s/:rid', async (req, res) => {
 });
 
 async function getRow(id) {
-    console.log('Inside getRow');
     const auth = await google.auth.getClient({
         scopes: ['https://www.googleapis.com/auth/spreadsheets']
     });
@@ -48,7 +46,6 @@ async function getRow(id) {
         spreadsheetId: '16Icc4k8p8e5lqr53ImieUKNQjV4getadDRxhY9bZWyc',
         range: 'Points!A:D'
     });
-    console.log(response.data.values);
 
     for (let row of response.data.values) {
         if (row[0] == id) {
