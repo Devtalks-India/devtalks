@@ -53,8 +53,8 @@ async function getRow(id) {
                 id: row[0],
                 point: row[1],
                 team: row[2],
-                added: row[3],
-                closed: row[4]
+                added: row[3] ?? '',
+                closed: row[4] ?? ''
             };
         }
     }
