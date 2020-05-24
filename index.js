@@ -19,9 +19,8 @@ app.get('/hello', async (req, res) => {
 });
 */
 
-app.get('/s/:rid', async (req, res) => {
-    const rowid = req.params.rid;
-    const events = await getRow(rowid);
+app.get('/events', async (req, res) => {
+    const events = await getRow();
     let retval;
     if (events) {
         retval = {
@@ -38,7 +37,7 @@ app.get('/s/:rid', async (req, res) => {
     res.send(JSON.stringify(retval));
 });
 
-async function getRow(id) {
+async function getRow() {
     const auth = await google.auth.getClient({
         scopes: ['https://www.googleapis.com/auth/spreadsheets']
     });
@@ -57,7 +56,7 @@ async function getRow(id) {
 	    frow = false;
 	    continue;
 	}
-	if(row[3] === 'past') {
+	if(row[3] == 'Past') {
             past.push({
                 title: row[0],
                 date: row[1],
