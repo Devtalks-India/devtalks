@@ -43,8 +43,8 @@ async function getRow(id) {
 
     const api = google.sheets({ version: 'v4', auth });
     const response = await api.spreadsheets.values.get({
-        spreadsheetId: '16Icc4k8p8e5lqr53ImieUKNQjV4getadDRxhY9bZWyc',
-        range: 'Points!A:E'
+        spreadsheetId: '1e2GXQAvCEeJ-iUtQzTCSI_US-6Hh1K_22rYbbokyzj0',
+        range: 'Events!A:E'
     });
 
     for (let row of response.data.values) {

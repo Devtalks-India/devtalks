@@ -30,4 +30,4 @@ options:
   substitution_option: "ALLOW_LOOSE"
 
 substitutions:
-  _CLOUD_RUN_SERVICE: "rotify"
+  _CLOUD_RUN_SERVICE: "devtalks-events"
