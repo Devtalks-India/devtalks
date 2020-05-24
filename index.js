@@ -66,10 +66,10 @@ async function getRow(id) {
             });
 	} else {
 	    upcoming.push({
-		title: row[0].
-		date: row[1].
-		speaker: row[2].
-		link: row[4].
+		title: row[0],
+		date: row[1],
+		speaker: row[2]
+		link: row[4]
 	    });
 	}
     }
