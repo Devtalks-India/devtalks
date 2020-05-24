@@ -50,21 +50,22 @@ async function getRow(id) {
     });
 
     let frow = true;
-    let events = [push:[], upcoming:[]];
+    let past = [];
+    let upcoming = [];
     for (let row of response.data.values) {
 	if(frow) {
 	    frow = false;
 	    continue;
 	}
 	if(row[3] === 'past') {
-            events.past.push({
+            past.push({
                 title: row[0],
                 date: row[1],
                 speaker: row[2],
                 link: row[4]
             });
 	} else {
-	    events.upcoming.push({
+	    upcoming.push({
 		title: row[0].
 		date: row[1].
 		speaker: row[2].
@@ -72,5 +73,5 @@ async function getRow(id) {
 	    });
 	}
     }
-    return events;
+    return {past: past, upcoming: upcoming};
 }
