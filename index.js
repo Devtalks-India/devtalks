@@ -45,7 +45,7 @@ async function getRow() {
     const api = google.sheets({ version: 'v4', auth });
     const response = await api.spreadsheets.values.get({
         spreadsheetId: '1e2GXQAvCEeJ-iUtQzTCSI_US-6Hh1K_22rYbbokyzj0',
-        range: 'Events!A:E'
+        range: 'Events!A:F'
     });
 
     let frow = true;
@@ -54,6 +54,9 @@ async function getRow() {
     for (let row of response.data.values) {
 	if(frow) {
 	    frow = false;
+	    continue;
+	}
+	if(row[5] == 'Disabled') {
 	    continue;
 	}
 	if(row[3] == 'Past') {
