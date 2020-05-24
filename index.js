@@ -47,15 +47,20 @@ async function getRow(id) {
         range: 'Events!A:E'
     });
 
+    let frow = true;
+    let events = [];
     for (let row of response.data.values) {
-        if (row[0] == id) {
-            return {
-                id: row[0],
-                point: row[1],
-                team: row[2],
-                added: row[3],
-                closed: row[4]
-            };
-        }
+	if(frow) {
+	    frow = false;
+	    continue;
+	}
+        events.push({
+            title: row[0],
+            date: row[1],
+            speaker: row[2],
+            state: row[3],
+            link: row[4]
+        });
     }
+    return events;
 }
