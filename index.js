@@ -8,28 +8,30 @@ app.listen(port, () => {
 });
 
 app.get('/', async (req, res) => {
-    res.send('Rotify!');
+    res.send('DevTalks-Events-API');
 });
 
+/*
 app.get('/hello', async (req, res) => {
     const name = req.query.name;
     const result = `Hello ${name}\n\n`;
     res.send(result);
 });
+*/
 
 app.get('/s/:rid', async (req, res) => {
     const rowid = req.params.rid;
-    const row = await getRow(rowid);
+    const events = await getRow(rowid);
     let retval;
-    if (row) {
+    if (events) {
         retval = {
             status: 'success',
-            data: { row: row }
+            data: { events: events }
         }
     } else {
         retval = {
             status: 'error',
-            data: { row: 'nothing' }
+            data: { events: 'nothing' }
         }
     }
     res.setHeader('content-type', 'application/json');
@@ -48,19 +50,27 @@ async function getRow(id) {
     });
 
     let frow = true;
-    let events = [];
+    let events = [push:[], upcoming:[]];
     for (let row of response.data.values) {
 	if(frow) {
 	    frow = false;
 	    continue;
 	}
-        events.push({
-            title: row[0],
-            date: row[1],
-            speaker: row[2],
-            state: row[3],
-            link: row[4]
-        });
+	if(row[3] === 'past') {
+            events.past.push({
+                title: row[0],
+                date: row[1],
+                speaker: row[2],
+                link: row[4]
+            });
+	} else {
+	    events.upcoming.push({
+		title: row[0].
+		date: row[1].
+		speaker: row[2].
+		link: row[4].
+	    });
+	}
     }
     return events;
 }
