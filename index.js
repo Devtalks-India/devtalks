@@ -68,7 +68,7 @@ async function getRow(id) {
 	    upcoming.push({
 		title: row[0],
 		date: row[1],
-		speaker: row[2]
+		speaker: row[2],
 		link: row[4]
 	    });
 	}
