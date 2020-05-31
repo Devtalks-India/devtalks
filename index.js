@@ -35,7 +35,7 @@ app.get('/events', async (req, res) => {
     }
     res.setHeader('content-type', 'application/json');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    res.setHeader('Access-Control-Allow-Origin', '*.devtalks.in');
+    res.setHeader('Access-Control-Allow-Origin', 'https://devtalks.in,http://localhost:3000,http://devtalks.local');
     res.setHeader('Access-Control-Allow-Methods', 'OPTIONS,GET');
     res.send(JSON.stringify(retval));
 });
