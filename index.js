@@ -33,16 +33,13 @@ app.get('/events', async (req, res) => {
             data: { events: 'nothing' }
         }
     }
-    CorsHeaders(res, retval);
-});
-
-function CorsHeaders() {
     res.setHeader('content-type', 'application/json');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'OPTIONS,GET');
     res.send(JSON.stringify(retval));
-}
+});
+
 async function getRow() {
     const auth = await google.auth.getClient({
         scopes: ['https://www.googleapis.com/auth/spreadsheets']
