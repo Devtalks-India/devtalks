@@ -19,13 +19,6 @@
 FROM node as build-deps
 WORKDIR /usr/src/app
 COPY . ./
-RUN yarn
-RUN yarn build
-RUN yarn global add serve
-#RUN serve -s build
-EXPOSE 8080
-CMD ["serve", "-s", "-l", "8080", "./build"]
-#FROM nginx:alpine
-#COPY --from=build-deps /usr/src/app/build /usr/share/nginx/html
-#EXPOSE 80
-#CMD ["nginx", "-g", "daemon off;"]
+RUN npm install
+RUN npm run build
+CMD ["npm", "start"]
