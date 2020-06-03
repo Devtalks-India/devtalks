@@ -76,9 +76,65 @@ async function getRow() {
 		date: row[1],
 		speaker: row[2],
 		link: row[4],
-    id: row[6],
+                id: row[6],
 	    });
 	}
     }
     return {past: past, upcoming: upcoming};
 }
+
+
+app.get('/speakers', async (req, res) => {
+    const speakers = await getSpeakers();
+    let retval;
+    if (speakers) {
+        retval = {
+            status: 'success',
+            data: { speakers: speakers }
+        }
+    } else {
+        retval = {
+            status: 'error',
+            data: { speakers: 'nothing' }
+        }
+    }
+    res.setHeader('content-type', 'application/json');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS,GET');
+    res.send(JSON.stringify(retval));
+});
+
+async function getSpeakers() {
+    const auth = await google.auth.getClient({
+        scopes: ['https://www.googleapis.com/auth/spreadsheets']
+    });
+
+    const api = google.sheets({ version: 'v4', auth });
+    const response = await api.spreadsheets.values.get({
+        spreadsheetId: '1e2GXQAvCEeJ-iUtQzTCSI_US-6Hh1K_22rYbbokyzj0',
+        range: 'Speakers!A:F'
+    });
+
+    let frow = true;
+    let speakers = [];
+    for (let row of response.data.values) {
+        if(frow) {
+            frow = false;
+            continue;
+        }
+        if(row[6] == 'Disabled') {
+            continue;
+        }
+        speakers.push({
+            name: row[0],
+            twitter: row[1],
+            linkedin: row[2],
+            github: row[3],
+            personal: row[4],
+            photo: row[5]
+        });
+    }
+    return {speakers};
+}
+
