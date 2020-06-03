@@ -9,7 +9,11 @@
     justify-content: space-between;
     margin-left: 10%;
     margin-top: 10px;
+    align-items: center;
 }
 .navigation-small {
 
+}
+.navigation-with-logo {
+    margin-top: 0;
 }
