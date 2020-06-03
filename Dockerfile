@@ -19,6 +19,6 @@
 FROM node as build-deps
 WORKDIR /usr/src/app
 COPY . ./
-RUN npm install
-RUN npm run build
+RUN yarn install
+RUN yarn build
 CMD ["npm", "start"]
