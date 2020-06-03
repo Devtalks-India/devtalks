@@ -135,6 +135,6 @@ async function getSpeakers() {
             photo: row[5]
         });
     }
-    return {speakers};
+    return speakers;
 }
 
