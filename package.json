@@ -8,13 +8,10 @@
     "react-jss": "^10.1.1",
     "react-router-dom": "^5.2.0",
     "react-transition-group": "^4.4.1",
-    "react-scripts": "^3.4.1",
-    "express": "^4.17.1",
-    "googleapis": "^50.0.0"
+    "react-scripts": "^3.4.1"
   },
   "scripts": {
-    "start": "node server/index.js",
-    "start:local": "react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
